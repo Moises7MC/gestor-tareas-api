@@ -4,7 +4,23 @@ Content-Type: application/json
 
 {
   "nombre": "Ana Torres",
-  "email": "ana@example.com",
+  "email": "ana2@example.com",
   "password": "password123",
   "rol": "ADMIN"
 }
+
+### Crear un proyecto
+POST http://localhost:8080/api/proyectos
+Content-Type: application/json
+
+{
+  "nombre": "Rediseño Web",
+  "descripcion": "Actualizar el sitio institucional",
+  "propietarioId": 36
+}
+
+### Buscar proyecto por ID
+GET http://localhost:8080/api/proyectos/1
+
+### Listar proyectos de un propietario
+GET http://localhost:8080/api/proyectos/usuario/36
