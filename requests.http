@@ -24,3 +24,39 @@ GET http://localhost:8080/api/proyectos/1
 
 ### Listar proyectos de un propietario
 GET http://localhost:8080/api/proyectos/usuario/36
+
+### Crear una tarea
+POST http://localhost:8080/api/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Diseñar landing page",
+  "descripcion": "Boceto inicial",
+  "fechaLimite": "2026-10-01",
+  "proyectoId": 1
+}
+
+### Buscar tarea por ID
+GET http://localhost:8080/api/tareas/1
+
+### Asignar usuario a una tarea
+PATCH http://localhost:8080/api/tareas/1/asignar
+Content-Type: application/json
+
+{
+  "usuarioId": 36
+}
+
+### Cambiar estado de una tarea
+PATCH http://localhost:8080/api/tareas/1/estado
+Content-Type: application/json
+
+{
+  "estado": "EN_PROGRESO"
+}
+
+### Listar tareas de un proyecto
+GET http://localhost:8080/api/tareas/proyecto/1
+
+### Listar tareas asignadas a un usuario
+GET http://localhost:8080/api/tareas/usuario/36
