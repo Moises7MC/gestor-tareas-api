@@ -1,0 +1,10 @@
+### Registrar un usuario
+POST http://localhost:8080/api/usuarios/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana Torres",
+  "email": "ana@example.com",
+  "password": "password123",
+  "rol": "ADMIN"
+}
