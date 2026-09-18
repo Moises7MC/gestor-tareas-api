@@ -3,15 +3,36 @@ POST http://localhost:8080/api/usuarios/registro
 Content-Type: application/json
 
 {
-  "nombre": "Ana Torres",
-  "email": "ana2@example.com",
+  "nombre": "Carlos Ruiz",
+  "email": "carlos2@example.com",
   "password": "password123",
-  "rol": "ADMIN"
+  "rol": "USER"
 }
+
+### Login de usuario
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "carlos@example.com",
+  "password": "password123"
+}
+
+> {%
+client.global.set("authToken", response.body.token);
+%}
+
+### Buscar proyecto por ID (sin token, debe dar 401)
+GET http://localhost:8080/api/proyectos/1
+
+### Buscar proyecto por ID (con token, debe dar 200)
+GET http://localhost:8080/api/proyectos/3
+Authorization: Bearer {{authToken}}
 
 ### Crear un proyecto
 POST http://localhost:8080/api/proyectos
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "nombre": "Rediseño Web",
@@ -19,15 +40,14 @@ Content-Type: application/json
   "propietarioId": 36
 }
 
-### Buscar proyecto por ID
-GET http://localhost:8080/api/proyectos/1
-
 ### Listar proyectos de un propietario
 GET http://localhost:8080/api/proyectos/usuario/36
+Authorization: Bearer {{authToken}}
 
 ### Crear una tarea
 POST http://localhost:8080/api/tareas
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "titulo": "Diseñar landing page",
@@ -38,10 +58,12 @@ Content-Type: application/json
 
 ### Buscar tarea por ID
 GET http://localhost:8080/api/tareas/1
+Authorization: Bearer {{authToken}}
 
 ### Asignar usuario a una tarea
 PATCH http://localhost:8080/api/tareas/1/asignar
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "usuarioId": 36
@@ -50,6 +72,7 @@ Content-Type: application/json
 ### Cambiar estado de una tarea
 PATCH http://localhost:8080/api/tareas/1/estado
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
   "estado": "EN_PROGRESO"
@@ -57,6 +80,8 @@ Content-Type: application/json
 
 ### Listar tareas de un proyecto
 GET http://localhost:8080/api/tareas/proyecto/1
+Authorization: Bearer {{authToken}}
 
 ### Listar tareas asignadas a un usuario
 GET http://localhost:8080/api/tareas/usuario/36
+Authorization: Bearer {{authToken}}
