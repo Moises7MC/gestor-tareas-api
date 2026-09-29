@@ -20,4 +20,3 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.getWriter().write("{\"error\":\"No autenticado: se requiere un token válido\"}");
     }
 }
-
